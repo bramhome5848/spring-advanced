@@ -7,6 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * HelloTraceV2 와 거의 같은 기능
  * TraceId 를 동기화 하는 부분만 파라미터가 아닌 TraceId traceIdHolder 필드를 사용
+ *
+ * 동시성 문제
+ * FiledLogTrace -> 싱글톤 스프링 빈으로 LogTraceConfig 에서 등록되어 있음
+ * 해당 인스턴스의 필드를 여러 쓰레드가 동시에 접근하기 때문에 출력시 log 가 엉키는 동시성 문제가 발생
  */
 @Slf4j
 public class FieldLogTrace implements LogTrace{
